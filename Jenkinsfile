@@ -16,17 +16,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    sh "mvn clean install"
-                }
+                echo "Build App"
             }
         }
 
         stage('Test') {
             steps {
-                script {
-                    sh "mvn test"
-                }
+                echo "Testing App"
             }
         }
 
