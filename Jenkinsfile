@@ -1,46 +1,44 @@
 pipeline {
     agent any
 
-    
-    tools {
-    maven 'Maven'
-    }
-
-
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    checkout scm
+                }
             }
         }
 
         stage('Build') {
             steps {
-                echo "Build App"
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo "Testing App"
+                script {
+                    sh 'mvn clean package'
+					echo "Build Application"
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploy App"
+                script {
+					echo "Deploy Application"
+                }
+            }
+        }
+		stage('Test') {
+            steps {
+                echo "Testing App"
             }
         }
     }
 
     post {
         success {
-            echo 'Build and test successful! Deploy your application.'
+            echo 'Build and deployment successful!'
         }
-
         failure {
-            echo 'Build or test failed! Check the logs for details.'
+            echo 'Build or deployment failed!'
         }
     }
 }
