@@ -14,19 +14,17 @@ pipeline {
             steps {
                 script {
                     sh 'mvn clean package'
-					echo "Build Application"
+		    echo "Build Application"
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-					echo "Deploy Application"
-                }
+		   echo "Deploy Application"
             }
         }
-		stage('Test') {
+	stage('Test') {
             steps {
                 echo "Testing App"
             }
