@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 	 tools {
-        maven 'MAVEN_HOME'
+        maven 'mvn'
     }
 
 
@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    bat 'mvn clean package'
+                    sh 'mvn clean package'
 		    echo "Build Application"
                 }
             }
